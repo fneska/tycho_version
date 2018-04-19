@@ -1,0 +1,28 @@
+package hu.prolan.viatra.query
+
+//import "platform:/plugin/hu.prolan.viatra.model/model/model.ecore"
+import "http://www.example.org/model"
+import java ^java.lang.String
+
+ pattern web(W: TestModelClass, N: java ^java.lang.String) = {
+ 	TestModelClass.name(W,N);
+ }
+ 
+ /*
+  *  all teachers
+  */
+ 
+// pattern myWebpage(MW) = {
+// 	MyWebpage(MW);
+// }
+// 
+// /* 
+//  * a sample query along a reference
+//  * 
+//  * Teacher T teaches in school Sch.
+//  */
+// pattern mWpsOfWeb(MW:MyWebpage, W:Web) = {
+// 	Web.mywebpage(W, MW); 
+// 	// note that there is no restriction on the direction of navigation:
+// 	// all "Sch"s can be queried from Ts and vice-versa
+// }

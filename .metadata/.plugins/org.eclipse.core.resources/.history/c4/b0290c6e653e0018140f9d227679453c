@@ -1,0 +1,250 @@
+<project>
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>hu.prolan.viatra</groupId>
+	<artifactId>hu.prolan.promod.root</artifactId>
+	<version>1.0.0-SNAPSHOT</version>
+	<packaging>pom</packaging>
+
+	<properties>
+		<tycho.version>1.1.0</tycho.version>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<eclipse-repo.url>http://download.eclipse.org/releases/neon/201705151400
+		</eclipse-repo.url>
+		<viatra-repo.url>http://download.eclipse.org/viatra/updates/release
+		</viatra-repo.url>
+		<viatra.version>1.2.1</viatra.version>
+	</properties>
+
+	<repositories>
+		<repository>
+			<id>eclipse-release</id>
+			<url>${eclipse-repo.url}</url>
+			<layout>p2</layout>
+		</repository>
+		<repository>
+			<id>viatra-release</id>
+			<url>${viatra-repo.url}</url>
+			<layout>p2</layout>
+		</repository>
+
+
+		<repository>
+			<id>viatra</id>
+			<url>https://repo.eclipse.org/content/groups/viatra2/</url>
+		</repository>
+
+	</repositories>
+
+	<pluginRepositories>
+		<pluginRepository>
+			<id>viatra</id>
+			<url>https://repo.eclipse.org/content/groups/viatra/</url>
+		</pluginRepository>
+	</pluginRepositories>
+
+	<dependencies>
+		<dependency>
+			<groupId>hu.prolan.javautil</groupId>
+			<artifactId>hu.prolan.javautil.docxwriter</artifactId>
+			<version>1.0.0-SNAPSHOT</version>
+		</dependency>
+		<dependency>
+			<groupId>hu.prolan.javautil</groupId>
+			<artifactId>hu.prolan.javautil.thirdparty.poi-ooxml</artifactId>
+			<version>1.0.0-SNAPSHOT</version>
+		</dependency>
+		<dependency>
+			<groupId>hu.prolan.javautil</groupId>
+			<artifactId>hu.prolan.javautil.base</artifactId>
+			<version>1.0.0-SNAPSHOT</version>
+		</dependency>
+		<!--dependency> <groupId>p2.eclipse-plugin</groupId> <artifactId>org.eclipse.viatra.query.runtime.rete</artifactId> 
+			<version>1.7.2.201803211255</version> </dependency -->
+
+		<dependency>
+			<groupId>org.eclipse.xtend</groupId>
+			<artifactId>org.eclipse.xtend.lib</artifactId>
+			<version>2.13.0</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.eclipse.viatra</groupId>
+			<artifactId>viatra-query-runtime</artifactId>
+			<version>${viatra.version}</version>
+		</dependency>
+
+
+		<dependency>
+			<groupId>org.eclipse.viatra</groupId>
+			<artifactId>viatra-query-language</artifactId>
+			<version>${viatra.version}</version>
+		</dependency>
+	</dependencies>
+
+	<build>
+		<plugins>
+
+			<plugin>
+				<groupId>org.eclipse.tycho</groupId>
+				<artifactId>tycho-maven-plugin</artifactId>
+				<version>${tycho.version}</version>
+				<extensions>true</extensions>
+			</plugin>
+
+			<plugin>
+				<groupId>org.eclipse.tycho</groupId>
+				<artifactId>tycho-packaging-plugin</artifactId>
+				<version>${tycho.version}</version>
+				<executions>
+					<execution>
+						<phase>package</phase>
+						<id>package-feature</id>
+						<configuration>
+							<finalName>${project.artifactId}_${unqualifiedVersion}.${buildQualifier}
+							</finalName>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
+
+			<plugin>
+				<groupId>org.eclipse.tycho</groupId>
+				<artifactId>target-platform-configuration</artifactId>
+				<version>${tycho.version}</version>
+				<configuration>
+					<pomDependencies>consider</pomDependencies>
+					<environments>
+						<environment>
+							<os>linux</os>
+							<ws>gtk</ws>
+							<arch>x86</arch>
+						</environment>
+						<environment>
+							<os>linux</os>
+							<ws>gtk</ws>
+							<arch>x86_64</arch>
+						</environment>
+						<environment>
+							<os>win32</os>
+							<ws>win32</ws>
+							<arch>x86</arch>
+						</environment>
+						<environment>
+							<os>win32</os>
+							<ws>win32</ws>
+							<arch>x86_64</arch>
+						</environment>
+						<environment>
+							<os>macosx</os>
+							<ws>cocoa</ws>
+							<arch>x86_64</arch>
+						</environment>
+					</environments>
+				</configuration>
+			</plugin>
+
+			<plugin>
+
+				<groupId>org.eclipse.xtend</groupId>
+				<artifactId>xtend-maven-plugin</artifactId>
+				<version>2.13.0</version>
+				<executions>
+					<execution>
+						<goals>
+							<goal>compile</goal>
+							<goal>testCompile</goal>
+						</goals>
+						<configuration>
+							<outputDirectory>xtend-gen
+							</outputDirectory>
+							<testOutputDirectory>${project.build.directory}/xtend-gen/test
+							</testOutputDirectory>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
+
+			<!-- Using maven-clean-plugin to remove previously generated code -->
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-clean-plugin</artifactId>
+				<version>2.5</version>
+				<executions>
+					<execution>
+						<phase>clean</phase>
+						<goals>
+							<goal>clean</goal>
+						</goals>
+						<configuration>
+							<filesets>
+								<fileset>
+									<!-- Generated code folder -->
+									<directory>src-gen</directory>
+									<includes>
+										<include>**/*</include>
+									</includes>
+								</fileset>
+							</filesets>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
+			<!-- Setting up generator -->
+			<plugin>
+				<groupId>org.eclipse.viatra</groupId>
+				<artifactId>viatra-maven-plugin</artifactId>
+				<version>${viatra.version}</version>
+				Binding execution to the code generation lifecycle phase
+				<executions>
+					<execution>
+						<phase>generate-sources</phase>
+						<goals>
+							<goal>generate</goal>
+						</goals>
+					</execution>
+				</executions>
+
+				<configuration>
+					<outputDirectory>src-gen</outputDirectory>
+
+					<metamodels>
+					<metamodel>
+					<packageClass>hu.prolan.viatra.model.model.ModelPackage</packageClass>
+					</metamodel>
+					</metamodels>
+<!-- 					<uriMappings> -->
+<!-- 						<uriMapping> -->
+<!-- 							<sourceUri>platform:/resource/model/model/model.ecore</sourceUri> -->
+<!-- 							<targetUri>file:/${project.basedir}/model/model/model.ecore -->
+<!-- 							</targetUri> -->
+<!-- 						</uriMapping> -->
+<!-- 						<uriMapping> -->
+<!-- 							<sourceUri>platform:/resource/model/model/model.genmodel -->
+<!-- 							</sourceUri> -->
+<!-- 							<targetUri>file:/${project.basedir}/model/model/model.genmodel -->
+<!-- 							</targetUri> -->
+<!-- 						</uriMapping> -->
+<!-- 					</uriMappings> -->
+
+				</configuration>
+
+				<dependencies>
+
+				<dependency>
+				<groupId>com.vogella.emf.webpage.model</groupId>
+				<artifactId>com.vogella.emf.webpage.model</artifactId>
+				<version>0.1.0</version>
+				</dependency>
+				</dependencies>
+			</plugin>
+		</plugins>
+	</build>
+
+	<modules>
+		<module>hu.prolan.viatra.model</module>
+		<module>hu.prolan.viatra.model.edit</module>
+		<module>hu.prolan.viatra.model.editor</module>
+		<module>hu.prolan.viatra.query</module>
+
+	</modules>
+</project>

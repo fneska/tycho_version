@@ -1,0 +1,292 @@
+/**
+ * Generated from platform:/resource/hu.prolan.viatra.query/src/hu/prolan/viatra/query/TestQueryClass.vql
+ */
+package hu.prolan.viatra.query;
+
+import hu.prolan.viatra.query.WebMatch;
+import hu.prolan.viatra.query.util.WebQuerySpecification;
+import java.util.Collection;
+import java.util.HashSet;
+import java.util.Set;
+import model.model.TestModelClass;
+import org.apache.log4j.Logger;
+import org.eclipse.viatra.query.runtime.api.IMatchProcessor;
+import org.eclipse.viatra.query.runtime.api.IQuerySpecification;
+import org.eclipse.viatra.query.runtime.api.ViatraQueryEngine;
+import org.eclipse.viatra.query.runtime.api.impl.BaseMatcher;
+import org.eclipse.viatra.query.runtime.exception.ViatraQueryException;
+import org.eclipse.viatra.query.runtime.matchers.tuple.Tuple;
+import org.eclipse.viatra.query.runtime.util.ViatraQueryLoggingUtil;
+
+/**
+ * Generated pattern matcher API of the hu.prolan.viatra.query.web pattern,
+ * providing pattern-specific query methods.
+ * 
+ * <p>Use the pattern matcher on a given model via {@link #on(ViatraQueryEngine)},
+ * e.g. in conjunction with {@link ViatraQueryEngine#on(Notifier)}.
+ * 
+ * <p>Matches of the pattern will be represented as {@link WebMatch}.
+ * 
+ * <p>Original source:
+ * <code><pre>
+ * pattern web(W: TestModelClass, N: java ^String) = {
+ *  	TestModelClass.name(W,N);
+ *  }
+ * </pre></code>
+ * 
+ * @see WebMatch
+ * @see WebProcessor
+ * @see WebQuerySpecification
+ * 
+ */
+@SuppressWarnings("all")
+public class WebMatcher extends BaseMatcher<WebMatch> {
+  /**
+   * Initializes the pattern matcher within an existing VIATRA Query engine.
+   * If the pattern matcher is already constructed in the engine, only a light-weight reference is returned.
+   * The match set will be incrementally refreshed upon updates.
+   * @param engine the existing VIATRA Query engine in which this matcher will be created.
+   * @throws ViatraQueryException if an error occurs during pattern matcher creation
+   * 
+   */
+  public static WebMatcher on(final ViatraQueryEngine engine) throws ViatraQueryException {
+    // check if matcher already exists
+    WebMatcher matcher = engine.getExistingMatcher(querySpecification());
+    if (matcher == null) {
+        matcher = (WebMatcher)engine.getMatcher(querySpecification());
+    }
+    return matcher;
+  }
+  
+  /**
+   * @throws ViatraQueryException if an error occurs during pattern matcher creation
+   * @return an initialized matcher
+   * @noreference This method is for internal matcher initialization by the framework, do not call it manually.
+   * 
+   */
+  public static WebMatcher create() throws ViatraQueryException {
+    return new WebMatcher();
+  }
+  
+  private final static int POSITION_W = 0;
+  
+  private final static int POSITION_N = 1;
+  
+  private final static Logger LOGGER = ViatraQueryLoggingUtil.getLogger(WebMatcher.class);
+  
+  /**
+   * Initializes the pattern matcher within an existing VIATRA Query engine.
+   * If the pattern matcher is already constructed in the engine, only a light-weight reference is returned.
+   * The match set will be incrementally refreshed upon updates.
+   * @param engine the existing VIATRA Query engine in which this matcher will be created.
+   * @throws ViatraQueryException if an error occurs during pattern matcher creation
+   * 
+   */
+  private WebMatcher() throws ViatraQueryException {
+    super(querySpecification());
+  }
+  
+  /**
+   * Returns the set of all matches of the pattern that conform to the given fixed values of some parameters.
+   * @param pW the fixed value of pattern parameter W, or null if not bound.
+   * @param pN the fixed value of pattern parameter N, or null if not bound.
+   * @return matches represented as a WebMatch object.
+   * 
+   */
+  public Collection<WebMatch> getAllMatches(final TestModelClass pW, final String pN) {
+    return rawGetAllMatches(new Object[]{pW, pN});
+  }
+  
+  /**
+   * Returns an arbitrarily chosen match of the pattern that conforms to the given fixed values of some parameters.
+   * Neither determinism nor randomness of selection is guaranteed.
+   * @param pW the fixed value of pattern parameter W, or null if not bound.
+   * @param pN the fixed value of pattern parameter N, or null if not bound.
+   * @return a match represented as a WebMatch object, or null if no match is found.
+   * 
+   */
+  public WebMatch getOneArbitraryMatch(final TestModelClass pW, final String pN) {
+    return rawGetOneArbitraryMatch(new Object[]{pW, pN});
+  }
+  
+  /**
+   * Indicates whether the given combination of specified pattern parameters constitute a valid pattern match,
+   * under any possible substitution of the unspecified parameters (if any).
+   * @param pW the fixed value of pattern parameter W, or null if not bound.
+   * @param pN the fixed value of pattern parameter N, or null if not bound.
+   * @return true if the input is a valid (partial) match of the pattern.
+   * 
+   */
+  public boolean hasMatch(final TestModelClass pW, final String pN) {
+    return rawHasMatch(new Object[]{pW, pN});
+  }
+  
+  /**
+   * Returns the number of all matches of the pattern that conform to the given fixed values of some parameters.
+   * @param pW the fixed value of pattern parameter W, or null if not bound.
+   * @param pN the fixed value of pattern parameter N, or null if not bound.
+   * @return the number of pattern matches found.
+   * 
+   */
+  public int countMatches(final TestModelClass pW, final String pN) {
+    return rawCountMatches(new Object[]{pW, pN});
+  }
+  
+  /**
+   * Executes the given processor on each match of the pattern that conforms to the given fixed values of some parameters.
+   * @param pW the fixed value of pattern parameter W, or null if not bound.
+   * @param pN the fixed value of pattern parameter N, or null if not bound.
+   * @param processor the action that will process each pattern match.
+   * 
+   */
+  public void forEachMatch(final TestModelClass pW, final String pN, final IMatchProcessor<? super WebMatch> processor) {
+    rawForEachMatch(new Object[]{pW, pN}, processor);
+  }
+  
+  /**
+   * Executes the given processor on an arbitrarily chosen match of the pattern that conforms to the given fixed values of some parameters.
+   * Neither determinism nor randomness of selection is guaranteed.
+   * @param pW the fixed value of pattern parameter W, or null if not bound.
+   * @param pN the fixed value of pattern parameter N, or null if not bound.
+   * @param processor the action that will process the selected match.
+   * @return true if the pattern has at least one match with the given parameter values, false if the processor was not invoked
+   * 
+   */
+  public boolean forOneArbitraryMatch(final TestModelClass pW, final String pN, final IMatchProcessor<? super WebMatch> processor) {
+    return rawForOneArbitraryMatch(new Object[]{pW, pN}, processor);
+  }
+  
+  /**
+   * Returns a new (partial) match.
+   * This can be used e.g. to call the matcher with a partial match.
+   * <p>The returned match will be immutable. Use {@link #newEmptyMatch()} to obtain a mutable match object.
+   * @param pW the fixed value of pattern parameter W, or null if not bound.
+   * @param pN the fixed value of pattern parameter N, or null if not bound.
+   * @return the (partial) match object.
+   * 
+   */
+  public WebMatch newMatch(final TestModelClass pW, final String pN) {
+    return WebMatch.newMatch(pW, pN);
+  }
+  
+  /**
+   * Retrieve the set of values that occur in matches for W.
+   * @return the Set of all values or empty set if there are no matches
+   * 
+   */
+  protected Set<TestModelClass> rawAccumulateAllValuesOfW(final Object[] parameters) {
+    Set<TestModelClass> results = new HashSet<TestModelClass>();
+    rawAccumulateAllValues(POSITION_W, parameters, results);
+    return results;
+  }
+  
+  /**
+   * Retrieve the set of values that occur in matches for W.
+   * @return the Set of all values or empty set if there are no matches
+   * 
+   */
+  public Set<TestModelClass> getAllValuesOfW() {
+    return rawAccumulateAllValuesOfW(emptyArray());
+  }
+  
+  /**
+   * Retrieve the set of values that occur in matches for W.
+   * @return the Set of all values or empty set if there are no matches
+   * 
+   */
+  public Set<TestModelClass> getAllValuesOfW(final WebMatch partialMatch) {
+    return rawAccumulateAllValuesOfW(partialMatch.toArray());
+  }
+  
+  /**
+   * Retrieve the set of values that occur in matches for W.
+   * @return the Set of all values or empty set if there are no matches
+   * 
+   */
+  public Set<TestModelClass> getAllValuesOfW(final String pN) {
+    return rawAccumulateAllValuesOfW(new Object[]{
+    null, 
+    pN
+    });
+  }
+  
+  /**
+   * Retrieve the set of values that occur in matches for N.
+   * @return the Set of all values or empty set if there are no matches
+   * 
+   */
+  protected Set<String> rawAccumulateAllValuesOfN(final Object[] parameters) {
+    Set<String> results = new HashSet<String>();
+    rawAccumulateAllValues(POSITION_N, parameters, results);
+    return results;
+  }
+  
+  /**
+   * Retrieve the set of values that occur in matches for N.
+   * @return the Set of all values or empty set if there are no matches
+   * 
+   */
+  public Set<String> getAllValuesOfN() {
+    return rawAccumulateAllValuesOfN(emptyArray());
+  }
+  
+  /**
+   * Retrieve the set of values that occur in matches for N.
+   * @return the Set of all values or empty set if there are no matches
+   * 
+   */
+  public Set<String> getAllValuesOfN(final WebMatch partialMatch) {
+    return rawAccumulateAllValuesOfN(partialMatch.toArray());
+  }
+  
+  /**
+   * Retrieve the set of values that occur in matches for N.
+   * @return the Set of all values or empty set if there are no matches
+   * 
+   */
+  public Set<String> getAllValuesOfN(final TestModelClass pW) {
+    return rawAccumulateAllValuesOfN(new Object[]{
+    pW, 
+    null
+    });
+  }
+  
+  @Override
+  protected WebMatch tupleToMatch(final Tuple t) {
+    try {
+        return WebMatch.newMatch((TestModelClass) t.get(POSITION_W), (String) t.get(POSITION_N));
+    } catch(ClassCastException e) {
+        LOGGER.error("Element(s) in tuple not properly typed!",e);
+        return null;
+    }
+  }
+  
+  @Override
+  protected WebMatch arrayToMatch(final Object[] match) {
+    try {
+        return WebMatch.newMatch((TestModelClass) match[POSITION_W], (String) match[POSITION_N]);
+    } catch(ClassCastException e) {
+        LOGGER.error("Element(s) in array not properly typed!",e);
+        return null;
+    }
+  }
+  
+  @Override
+  protected WebMatch arrayToMatchMutable(final Object[] match) {
+    try {
+        return WebMatch.newMutableMatch((TestModelClass) match[POSITION_W], (String) match[POSITION_N]);
+    } catch(ClassCastException e) {
+        LOGGER.error("Element(s) in array not properly typed!",e);
+        return null;
+    }
+  }
+  
+  /**
+   * @return the singleton instance of the query specification of this pattern
+   * @throws ViatraQueryException if the pattern definition could not be loaded
+   * 
+   */
+  public static IQuerySpecification<WebMatcher> querySpecification() throws ViatraQueryException {
+    return WebQuerySpecification.instance();
+  }
+}

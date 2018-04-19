@@ -1,0 +1,15 @@
+Manifest-Version: 1.0
+Bundle-SymbolicName: hu.prolan.viatra.model.edit;singleton:=true
+Require-Bundle: org.eclipse.core.runtime,hu.prolan.viatra.model;visibi
+ lity:=reexport,org.eclipse.emf.edit;visibility:=reexport
+Bundle-ManifestVersion: 2
+Bundle-RequiredExecutionEnvironment: JavaSE-1.8
+Bundle-ActivationPolicy: lazy
+Bundle-Vendor: %providerName
+Export-Package: model.model.provider
+Bundle-Name: %pluginName
+Bundle-Version: 1.0.0.201804160914
+Bundle-ClassPath: .
+Bundle-Localization: plugin
+Bundle-Activator: model.model.provider.ModelEditPlugin$Implementation
+

@@ -1,0 +1,30 @@
+/**
+ * Generated from platform:/resource/hu.prolan.viatra.query/src/hu/prolan/viatra/query/TestQueryClass.vql
+ */
+package hu.prolan.viatra.query.util;
+
+import hu.prolan.viatra.query.WebMatch;
+import model.model.TestModelClass;
+import org.eclipse.viatra.query.runtime.api.IMatchProcessor;
+
+/**
+ * A match processor tailored for the hu.prolan.viatra.query.web pattern.
+ * 
+ * Clients should derive an (anonymous) class that implements the abstract process().
+ * 
+ */
+@SuppressWarnings("all")
+public abstract class WebProcessor implements IMatchProcessor<WebMatch> {
+  /**
+   * Defines the action that is to be executed on each match.
+   * @param pW the value of pattern parameter W in the currently processed match
+   * @param pN the value of pattern parameter N in the currently processed match
+   * 
+   */
+  public abstract void process(final TestModelClass pW, final String pN);
+  
+  @Override
+  public void process(final WebMatch match) {
+    process(match.getW(), match.getN());
+  }
+}

@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?><plugin>
+  <extension id="hu.prolan.viatra.query.TestQueryClass" point="org.eclipse.viatra.query.runtime.queryspecification">
+    <group group="org.eclipse.viatra.query.runtime.extensibility.SingletonExtensionFactory:hu.prolan.viatra.query.TestQueryClass" id="hu.prolan.viatra.query.TestQueryClass">
+      <query-specification fqn="hu.prolan.viatra.query.web"/>
+    </group>
+  </extension>
+</plugin>
