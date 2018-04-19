@@ -10,7 +10,7 @@ Bundle-ActivationPolicy: lazy
 Bundle-Vendor: %providerName
 Export-Package: model.model.presentation
 Bundle-Name: %pluginName
-Bundle-Version: 1.0.0.201804160914
+Bundle-Version: 1.0.0.201804192059
 Bundle-ClassPath: .
 Bundle-Localization: plugin
 Bundle-Activator: model.model.presentation.ModelEditorPlugin$Implement

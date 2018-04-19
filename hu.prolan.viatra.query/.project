@@ -40,9 +40,9 @@
 	</natures>
 	<linkedResources>
 		<link>
-			<name>promod_root.xml</name>
+			<name>pom_parent.xml</name>
 			<type>1</type>
-			<location>C:/Users/fekete.agnes/workspace/workspace_viatra_plugin_test/pom.xml</location>
+			<location>C:/git/vitatra/tycho_version/pom.xml</location>
 		</link>
 	</linkedResources>
 </projectDescription>
